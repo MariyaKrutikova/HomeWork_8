@@ -6,7 +6,7 @@
 27(0,0,1) 90(0,1,1)
 26(1,0,1) 55(1,1,1)*/
 
-int GetNumber(string message)
+/*int GetNumber(string message)
 {
     int result = 0;
     while(true)
@@ -20,7 +20,7 @@ int GetNumber(string message)
         }    
     }
     return result;
-}
+}*/
 
 int[,,] InitMatrix(int x, int y, int z)
 {
@@ -32,9 +32,27 @@ int[,,] InitMatrix(int x, int y, int z)
         {
             for (int k = 0; k < z; k++)
             {
-                matrix[i, j, k] = rnd.Next(0,10);
+                int number = 0;
+                bool a = true;//не хочу записывать
+                while (a)
+                    {
+                    number = rnd.Next(10,99);
+                    a = false;
+                    for (int n = 0; n < x; n++)
+                        for (int m = 0; m < y; m++)
+                            for (int p = 0; p < z; p++)
+                                    {if (matrix[n,m,p] == number)
+                                    {
+                                        a = true;
+                                    } 
+                                    //Console.WriteLine($"подбор,{n},{m},{p},{number},{a}"); 
+                                    }
+                    }
+                   // Console.WriteLine($"подобрано,{i},{j},{k},{number},{a}");  
+               matrix[i,j,k] = number;                   
             }
-        }
+               
+        }        
     }
     return matrix;
 }  
@@ -57,11 +75,11 @@ int[,,] PrintMatrix(int[,,] matrix)
 }
 
 
-int x = GetNumber("Задайте количество строк: ");
-int y = GetNumber("Задайте количество столбцов: ");
-int z = GetNumber("Задайте количество слоев: ");
+// int x = GetNumber("Задайте количество строк: ");
+// int y = GetNumber("Задайте количество столбцов: ");
+// int z = GetNumber("Задайте количество слоев: ");
 
-int[,,] matrix = InitMatrix(x, y, z);
+int[,,] matrix = InitMatrix(2, 2, 2);
 PrintMatrix(matrix);
 Console.WriteLine();
 
